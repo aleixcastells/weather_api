@@ -7,53 +7,74 @@ const DATA = {}
 const PREVIOUS_NIGHT = {}
 
 const INFO_GET = {
-    get current_date() { return `${INFO.api_current_date.match(/^........../)}` },
-    get sunrise() { return `${INFO.api_sunrise.match(/.....$/)} h` },
-    get sunset() { return `${INFO.api_sunset.match(/.....$/)} h` },
-    get latitude() { return `${INFO.api_latitude} °N` },
-    get longitude() { return `${INFO.api_longitude} °E` },
-    get timezone() { return `${INFO.api_timezone}` },
-
+    get data_actual() { return `${INFO.api_current_date.match(/^........../)}` },
+    get sortida_sol() { return `${INFO.api_sunrise.match(/.....$/)} h` },
+    get posta_sol() { return `${INFO.api_sunset.match(/.....$/)} h` },
+    get latitud() { return `${INFO.api_latitude} °N` },
+    get longitud() { return `${INFO.api_longitude} °E` },
+    get zona_horaria() { return `${INFO.api_timezone}` },
 }
 
 const WEATHER_GET = {
-    get current_time() { return `${WEATHER.api_current_time.match(/.....$/)} h` },
-    get temperature() { return `${WEATHER.api_temperature} °C` },
+    get hora_actual() { return `${WEATHER.api_current_time.match(/.....$/)} h` },
+    get temperatura() { return `${WEATHER.api_temperature} °C` },
     get temps() { return weatherCode(WEATHER.api_weathercode) },
-    get windspeed() { return `${WEATHER.api_windspeed} Km/h` },
-    get windgusts() { return `${WEATHER.api_windgusts_10m} Km/h` },
-    get wind_direction() {
+    get vent() { return `${WEATHER.api_windspeed} Km/h` },
+    get ratxa_vent_màxima() { return `${WEATHER.api_windgusts_10m} Km/h` },
+    get direcció_vent() {
         return `${windCardinalDirection(WEATHER.api_winddirection)}`
     },
-    get precipitation_total() { return `${WEATHER.api_precipitation_sum} mm` },
-    get temperature_min() { return `${WEATHER.api_temperature_2m_min} °C` },
-    get temperature_max() { return `${WEATHER.api_temperature_2m_max} °C` },
-    get apparent_temperature() { return `${WEATHER.api_apparent_temperature} °C` },
-    get relative_humidity_2m() { return `${WEATHER.api_relativehumidity_2m} %` },
-    get rain() { return `${WEATHER.api_rain} mm` },
-    get showers() { return `${WEATHER.api_showers} mm` },
-    get visibility() { return `${Math.round(WEATHER.api_visibility / 1000)} Km` },
+    get precipitació_total() { return `${WEATHER.api_precipitation_sum} mm` },
+    get temperatura_min() { return `${WEATHER.api_temperature_2m_min} °C` },
+    get temperatura_max() { return `${WEATHER.api_temperature_2m_max} °C` },
+    get temperatura_aparent() { return `${WEATHER.api_apparent_temperature} °C` },
+    get humitat_relativa() { return `${WEATHER.api_relativehumidity_2m} %` },
+    get pluja() { return `${WEATHER.api_rain} mm` },
+    get ruixats() { return `${WEATHER.api_showers} mm` },
+    get visibilitat() { return `${Math.round(WEATHER.api_visibility / 1000)} Km` },
 
-    get diffuse_radiation() { return `${WEATHER.api_diffuse_radiation_instant} W/m²` },
-    get direct_N_Irradiance() { return `${WEATHER.api_direct_normal_irradiance_instant} W/m²` },
-    get direct_radiation() { return `${WEATHER.api_direct_radiation_instant} W/m²` },
-    get shortwave_radiation() { return `${WEATHER.api_shortwave_radiation_instant} W/m²` },
-    get terrestrial_radiation() { return `${WEATHER.api_terrestrial_radiation_instant} W/m²` },
+    get radiació_difosa() { return `${WEATHER.api_diffuse_radiation_instant} W/m²` },
+    get DNI() { return `${WEATHER.api_direct_normal_irradiance_instant} W/m²` },
+    get radiació_directa() { return `${WEATHER.api_direct_radiation_instant} W/m²` },
+    get radiació_ona_curta() { return `${WEATHER.api_shortwave_radiation_instant} W/m²` },
+    get radiació_terrestre() { return `${WEATHER.api_terrestrial_radiation_instant} W/m²` },
 }
 
 const DATA_GET = {
 
-    get evapotranspiration() { return `${DATA.api_evapotranspiration} mm` },
-    get dewpoint_2m() { return `${DATA.api_dewpoint_2m} °C` },
-    get freezing_level_height() { return `${DATA.api_freezinglevel_height} m` },
-    get soil_moisture_3cm() { return `${DATA.api_soil_moisture_1_3cm} %` },
-    get soil_moisture_9cm() { return `${DATA.api_soil_moisture_3_9cm} %` },
-    get soil_moisture_27cm() { return `${DATA.api_soil_moisture_9_27cm} %` },
-    get soil_moisture_81cm() { return `${DATA.api_soil_moisture_27_81cm} %` },
-    get soil_temperature_0cm() { return `${DATA.api_soil_temperature_0cm} °C` },
-    get soil_temperature_6cm() { return `${DATA.api_soil_temperature_6cm} °C` },
+    get evapotranspiració() { return `${DATA.api_evapotranspiration} mm` },
+    get punt_rosada() { return `${DATA.api_dewpoint_2m} °C` },
+    get cota_neu() { return `${DATA.api_freezinglevel_height} m` },
+    get humitat_terra_3cm() { return `${DATA.api_soil_moisture_1_3cm} %` },
+    get humitat_terra_9cm() { return `${DATA.api_soil_moisture_3_9cm} %` },
+    get humitat_terra_27cm() { return `${DATA.api_soil_moisture_9_27cm} %` },
+    get humitat_terra_81cm() { return `${DATA.api_soil_moisture_27_81cm} %` },
+    get temperatura_terra_0cm() { return `${DATA.api_soil_temperature_0cm} °C` },
+    get temperatura_terra_6cm() { return `${DATA.api_soil_temperature_6cm} °C` },
     get CAPE() { return `${DATA.api_cape} J/kg` },
 
+}
+
+function colorAccents() {
+
+    // Check max
+    checkMaxValues(WEATHER.api_windspeed, 'vent', 50, 'red_accent')
+    checkMaxValues(WEATHER.api_windgusts_10m, 'ratxa_vent_màxima', 70, 'red_accent')
+
+    // Check min
+    checkMinValues(WEATHER.api_temperature, 'temperatura', 10, 'red_accent')
+    checkMinValues(WEATHER.api_apparent_temperature, 'temperatura_aparent', 5, 'red_accent')
+}
+
+function checkMaxValues(value, id, max, accent) {
+    if (value >= max) {
+        document.getElementById(id).classList.add(accent)
+    }
+}
+function checkMinValues(value, id, max, accent) {
+    if (value <= max) {
+        document.getElementById(id).classList.add(accent)
+    }
 }
 
 async function apiFetch() {
@@ -106,11 +127,10 @@ async function apiFetch() {
     PREVIOUS_NIGHT.api_weathercode = API_DATA.hourly.weathercode
     PREVIOUS_NIGHT.api_freezinglevel_height = API_DATA.hourly.freezinglevel_height
 
-
     console.log(API_DATA)
     console.log(current_time_index)
     showTables()
-
+    colorAccents()
 }
 
 apiFetch()
@@ -148,12 +168,15 @@ function createTables(i, table) {
     new_cell_header.innerText = i + 1
 
     new_row.append(new_cell1)
+
     new_cell1.innerText = fixText(all_object_properties[i])
     new_cell1.classList.add('no-break')
 
     new_row.append(new_cell2)
     new_cell2.innerText = all_object_values[i]
     new_cell2.classList.add('no-break', 'table-value')
+    new_cell2.setAttribute('id', all_object_properties[i])
+
 }
 
 function showTables() {
@@ -211,18 +234,14 @@ function windCardinalDirection(degrees) {
     }
 }
 
-
 function highlights() {
 
     let highlights_array = []
 
     for (let i = 48; i < 56; i++) {
         if (highlights_array.indexOf(PREVIOUS_NIGHT.api_weathercode[i]) < 0) {
-            document.getElementById('val-6').innerText += ` [${weatherCode(PREVIOUS_NIGHT.api_weathercode[i])}]`
+            document.getElementById('val-6').innerText += `[${weatherCode(PREVIOUS_NIGHT.api_weathercode[i])}] `
             highlights_array.push(PREVIOUS_NIGHT.api_weathercode[i])
         }
     }
-
-
-
 }

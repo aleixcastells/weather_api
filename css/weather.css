@@ -1,3 +1,8 @@
+body {
+    background-color: rgb(241, 241, 241) !important;
+    color: rgb(35, 35, 35) !important;
+}
+
 .table-value {
     font-family: 'Menlo', monospace;
     padding-top: .8em !important;
@@ -10,7 +15,7 @@
 
 tr {
     background-color: transparent;
-    color: black;
+    color: inherit;
 }
 
 @media(hover: hover) {
@@ -18,4 +23,8 @@ tr {
         background-color: rgba(103, 164, 255, 0.191);
         color: rgb(4, 110, 196);
     }
+}
+
+.red_accent {
+    color: red !important;
 }
