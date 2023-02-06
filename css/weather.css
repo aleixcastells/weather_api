@@ -1,0 +1,21 @@
+.table-value {
+    font-family: 'Menlo', monospace;
+    padding-top: .8em !important;
+    font-size: .85em;
+}
+
+.no-break {
+    white-space: nowrap;
+}
+
+tr {
+    background-color: transparent;
+    color: black;
+}
+
+@media(hover: hover) {
+    tr:hover {
+        background-color: rgba(103, 164, 255, 0.191);
+        color: rgb(4, 110, 196);
+    }
+}
