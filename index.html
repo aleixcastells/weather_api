@@ -10,8 +10,9 @@
     <title>meteoartà</title>
 
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="icon" type="image/x-icon" sizes="192x192" href="img/favicon.png">
     <link rel="apple-touch-icon" href="img/favicon.png" />
+
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/weather.css" rel="stylesheet" />
     <link href="css/styles.css" rel="stylesheet" />
@@ -25,20 +26,44 @@
         <div class="container">
 
             <!-- Navbar Title-->
-            <a class="navbar-brand">Meteo Artà</a>
-
+            <a class="navbar-brand">meteoartà</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent"></div>
         </div>
     </nav>
-    <br>
+
+    <div class="grafic_container">
+        <div class="grafic-setmana">
+            <div id="div_dia_1" class="dia">
+                <span id="dia_1">-</span>
+            </div>
+            <div id="div_dia_2" class="dia">
+                <span id="dia_2">-</span>
+            </div>
+            <div id="div_dia_3" class="dia">
+                <span id="dia_3">-</span>
+            </div>
+            <div id="div_dia_4" class="dia">
+                <span id="dia_4">-</span>
+            </div>
+            <div id="div_dia_5" class="dia">
+                <span id="dia_5">-</span>
+            </div>
+            <div id="div_dia_6" class="dia">
+                <span id="dia_6">-</span>
+            </div>
+            <div id="div_dia_7" class="dia">
+                <span id="dia_7">-</span>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Page content-->
     <div class="container">
+        <br>
+
         <h3>Ara mateix:</h3>
-
         <div class="row">
-
-
             <div class="col-sm">
                 <table class="table">
                     <thead>
@@ -50,13 +75,10 @@
                     </thead>
                     <tbody id="table-1">
                         <tr>
-
                         </tr>
-
                     </tbody>
                 </table>
             </div>
-
             <div class="col-sm">
                 <table class="table">
                     <thead>
@@ -67,12 +89,9 @@
                         </tr>
                     </thead>
                     <tbody id="table-2">
-
-
                     </tbody>
                 </table>
             </div>
-
             <div class="col-sm">
                 <table class="table">
                     <thead>
@@ -83,86 +102,124 @@
                         </tr>
                     </thead>
                     <tbody id="table-3">
-
                     </tbody>
                 </table>
             </div>
-
-
-
         </div>
-
-
-
-
     </div>
     <br>
-    <div class="container">
 
+    <div class="container">
         <h3>Aquesta nit passada:</h3>
-        <h6>(00:00h a 08:00)</h6>
+        <h6 id="nit_passada">-</h6>
         <div class="row">
             <div class="col-sm">
-
                 <table class="table">
-
                     <thead>
                         <tr>
                             <th scope="col">Nom</th>
                             <th scope="col">Valor</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
+                        <tr class="blue-hover">
                             <td id="var-1" scope="col">Total pluja</td>
                             <td class="table-value" id="val-1" scope="col"></td>
                         </tr>
-                        <tr>
+                        <tr class="blue-hover">
                             <td id="var-2" scope="col">Temperatura mínima</td>
                             <td class="table-value" id="val-2" scope="col"></td>
                         </tr>
-                        <tr>
+                        <tr class="blue-hover">
                             <td id="var-3" scope="col">Sensació mínima</td>
                             <td class="table-value" id="val-3" scope="col"></td>
                         </tr>
 
-                    </tbody>
-                </table>
-
-            </div>
-
-            <div class="col-sm">
-
-                <table class="table">
-
-                    <thead>
-                        <tr>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Valor</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
+                        <tr class="blue-hover">
                             <td id="var-4" scope="col">Màxima vent</td>
                             <td class="table-value" id="val-4" scope="col"></td>
                         </tr>
-                        <tr>
-                            <td id="var-5" class="no-break" scope="col">Mínima cota de neu</td>
+                        <tr class="blue-hover">
+                            <td id="var-5" class="no-break" scope="col">Cota de neu mínima</td>
                             <td class="table-value" id="val-5" scope="col"></td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td id="var-6" scope="col">Ha fet</td>
+                            <th scope="col">Canvis de temps</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="blue-hover">
+                            <td id="var-6" scope="col">Aquesta nit ha fet:</td>
                             <td class="table-value" id="val-6" scope="col"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
         </div>
+    </div>
+    <br>
 
+    <div class="container">
+        <h3>Demà:</h3>
+        <h6 id="prediccio_dema">-</h6>
+        <div class="row">
+            <div class="col-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="blue-hover">
+                            <td id="var-1" scope="col">Temperatura mínima</td>
+                            <td class="table-value" id="val-7" scope="col"></td>
+                        </tr>
+                        <tr class="blue-hover">
+                            <td id="var-2" scope="col">Temperatura màxima</td>
+                            <td class="table-value" id="val-8" scope="col"></td>
+                        </tr>
+                        <tr class="blue-hover">
+                            <td id="var-3" scope="col">Total pluja</td>
+                            <td class="table-value" id="val-9" scope="col"></td>
+                        </tr>
+                        <tr class="blue-hover">
+                            <td id="var-4" scope="col">Màxima vent</td>
+                            <td class="table-value" id="val-10" scope="col"></td>
+                        </tr>
+                        <tr class="blue-hover">
+                            <td id="var-5" class="no-break" scope="col">Direcció dominant vent</td>
+                            <td class="table-value" id="val-11" scope="col"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm">
+                <table class="table">
+
+                    <thead>
+                        <tr>
+                            <th scope="col">Canvis de temps</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="blue-hover">
+                            <td id="var-6" scope="col">Demà ha de fer:</td>
+                            <td class="table-value" id="val-12" scope="col"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
 

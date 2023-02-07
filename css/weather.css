@@ -1,30 +1,102 @@
 body {
     background-color: rgb(241, 241, 241) !important;
-    color: rgb(35, 35, 35) !important;
+    color: rgb(59, 59, 59) !important;
+    padding-bottom: 50px;
 }
+
 
 .table-value {
     font-family: 'Menlo', monospace;
     padding-top: .8em !important;
     font-size: .85em;
+
 }
 
 .no-break {
     white-space: nowrap;
 }
 
-tr {
+.blue-hover {
     background-color: transparent;
     color: inherit;
 }
 
-@media(hover: hover) {
-    tr:hover {
-        background-color: rgba(103, 164, 255, 0.191);
-        color: rgb(4, 110, 196);
-    }
-}
 
 .red_accent {
     color: red !important;
+}
+
+.grafic_container {
+    width: 100%;
+    background-color: rgb(214, 214, 214);
+
+}
+
+.grafic-setmana {
+    margin: auto;
+    height: 65px;
+    display: flex;
+    text-align: center;
+    font-size: .7em;
+    max-width: 400px;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 20px;
+
+}
+
+.dia {
+    width: 14.28%;
+    display: block;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center 25px;
+    background-color: transparent;
+    height: 65px;
+    padding-top: 8px;
+
+}
+
+@media(hover: hover) {
+    .blue-hover:hover {
+        background-color: rgba(103, 164, 255, 0.191);
+        color: rgb(4, 110, 196);
+    }
+
+    .dia:hover {
+        background-color: rgba(0, 0, 0, 0.079);
+    }
+}
+
+
+.sun {
+    background-image: url(../img/logo-sunny.png);
+}
+
+.part_cloud {
+    background-image: url(../img/logo-sunny.png);
+}
+
+.cloud {
+    background-image: url(../img/logo-cloud.png);
+}
+
+.rain {
+    background-image: url(../img/logo-rain.png);
+}
+
+.storm {
+    background-image: url(../img/logo-storm.png);
+}
+
+.hail {
+    background-image: url(../img/logo-snow.png);
+}
+
+.snow {
+    background-image: url(../img/logo-snowing.png);
+}
+
+.night {
+    background-image: url(../img/logo-night.png);
 }
