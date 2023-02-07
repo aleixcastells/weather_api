@@ -116,32 +116,10 @@ async function apiFetch() {
     console.log(API_DATA)
     // console.log(current_time_index)
     showTables()
-    colorAccents()
     weekForecast()
 
 }
-function checkMaxValues(value, id, max, accent) {
-    if (value >= max) { document.getElementById(id).classList.add(accent) }
-}
-function checkMinValues(value, id, max, accent) {
-    if (value <= max) { document.getElementById(id).classList.add(accent) }
-}
-function colorAccents() {
 
-    // Check max
-    checkMaxValues(WEATHER.api_windspeed, 'vent', 50, 'red_accent')
-    checkMaxValues(WEATHER.api_windgusts_10m, 'ratxa_vent_màxima', 50, 'red_accent')
-    checkMaxValues(WEATHER.api_diffuse_radiation_instant, 'radiació_difosa', 2000, 'red_accent')
-    checkMaxValues(WEATHER.api_direct_normal_irradiance_instant, 'DNI', 2000, 'red_accent')
-    checkMaxValues(WEATHER.api_direct_radiation_instant, 'radiació_directa', 2000, 'red_accent')
-    checkMaxValues(WEATHER.radiació_ona_curta, 'radiació_ona_curta', 2000, 'red_accent')
-    checkMaxValues(WEATHER.api_terrestrial_radiation_instant, 'radiació_terrestre', 2000, 'red_accent')
-
-    // Check min
-    checkMinValues(WEATHER.api_temperature, 'temperatura', 10, 'red_accent')
-    checkMinValues(WEATHER.api_apparent_temperature, 'temperatura_aparent', 5, 'red_accent')
-    checkMinValues(WEATHER.api_freezinglevel_height, 'cota_neu', 200, 'red_accent')
-}
 function createTables(i, table) {
 
     let all_object_properties = [...Object.keys(WEATHER_GET), ...Object.keys(INFO_GET), ...Object.keys(DATA_GET)]
