@@ -1,7 +1,12 @@
-const API_URL = 'https://api.open-meteo.com/v1/forecast?latitude=39.69&longitude=3.35&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,precipitation,rain,showers,freezinglevel_height,weathercode,surface_pressure,visibility,evapotranspiration,cape,windgusts_10m,soil_temperature_0cm,soil_temperature_6cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm,soil_moisture_27_81cm,shortwave_radiation_instant,direct_radiation_instant,diffuse_radiation_instant,direct_normal_irradiance_instant,terrestrial_radiation_instant&models=best_match&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,showers_sum,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&timezone=Europe%2FBerlin&past_days=2'
+const API_URL = ['Artà', 'https://api.open-meteo.com/v1/forecast?latitude=39.69&longitude=3.35&hourly=temperature_2m,relativehumidity_2m,dewpoint_2m,apparent_temperature,precipitation,rain,showers,freezinglevel_height,weathercode,surface_pressure,visibility,evapotranspiration,cape,windgusts_10m,soil_temperature_0cm,soil_temperature_6cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm,soil_moisture_27_81cm,shortwave_radiation_instant,direct_radiation_instant,diffuse_radiation_instant,direct_normal_irradiance_instant,terrestrial_radiation_instant&models=best_match&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,showers_sum,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&timezone=Europe%2FBerlin&past_days=2']
+
 // API Documentation https://open-meteo.com/en/docs#api-documentation
 
-const INFO = {}
+const DATE = new Date()
+const INFO = {
+    get hores() { return DATE.getHours() },
+    get minuts() { return DATE.getMinutes() }
+}
 const WEATHER = {}
 const DATA = {}
 const PREVIOUS_NIGHT = {}
@@ -9,6 +14,7 @@ const NEXT_DAY = {}
 const FORECAST = {}
 
 const INFO_GET = {
+
     get sortida_sol() { return `${INFO.api_sunrise.match(/.....$/)} h` },
     get posta_sol() { return `${INFO.api_sunset.match(/.....$/)} h` },
     get latitud() { return `${INFO.api_latitude} °N` },
@@ -17,6 +23,7 @@ const INFO_GET = {
 }
 
 const WEATHER_GET = {
+    get hora() { return `${INFO.date_hora}` },
     get darrera_actualització() { return `${WEATHER.api_current_time.match(/.....$/)} h` },
     get data_avui() { return `${INFO.api_current_date.match(/^........../)}` },
     get temperatura() { return `${WEATHER.api_temperature} °C` },
@@ -25,14 +32,14 @@ const WEATHER_GET = {
     get direcció_vent() { return `${windCardinalDirection(WEATHER.api_winddirection)}` },
     get vent() { return `${WEATHER.api_windspeed} Km/h` },
     get ratxes_vent() { return `${WEATHER.api_windgusts_10m} Km/h` },
-    get pluja_aquesta_hora() { return `${WEATHER.api_rain} mm` },
-    get pluja_total_avui() { return `${WEATHER.api_precipitation_sum} mm` },
+    get pluja_aquesta_hora() { return `${WEATHER.api_rain} L` },
+    get pluja_total_avui() { return `${WEATHER.api_precipitation_sum} L` },
     get temperatura_min_avui() { return `${WEATHER.api_temperature_2m_min} °C` },
     get temperatura_max_avui() { return `${WEATHER.api_temperature_2m_max} °C` },
     get humitat_relativa() { return `${WEATHER.api_relativehumidity_2m} %` },
     get visibilitat() { return `${Math.round(WEATHER.api_visibility / 1000)} Km` },
     get radiació_difosa() { return `${WEATHER.api_diffuse_radiation_instant} W/m²` },
-    get DNI() { return `${WEATHER.api_direct_normal_irradiance_instant} W/m²` },
+    get radiació_normal_directa() { return `${WEATHER.api_direct_normal_irradiance_instant} W/m²` },
     get radiació_directa() { return `${WEATHER.api_direct_radiation_instant} W/m²` },
     get radiació_ona_curta() { return `${WEATHER.api_shortwave_radiation_instant} W/m²` },
     get radiació_terrestre() { return `${WEATHER.api_terrestrial_radiation_instant} W/m²` },
@@ -55,12 +62,13 @@ apiFetch()
 
 async function apiFetch() {
 
-    const RESPONSE = await fetch(API_URL)
+    const RESPONSE = await fetch(API_URL[1])
     const API_DATA = await RESPONSE.json()
 
     let current_time_index = API_DATA.hourly.time.indexOf(API_DATA.current_weather.time)
 
     WEATHER.api_current_time = API_DATA.current_weather.time
+    INFO.date_hora = `${DATE.getHours()}:${getMinutesFormat()} h`
     INFO.api_current_date = API_DATA.current_weather.time
     INFO.api_latitude = API_DATA.latitude
     INFO.api_longitude = API_DATA.longitude
@@ -114,10 +122,9 @@ async function apiFetch() {
     FORECAST.api_weathercode = API_DATA.daily.weathercode
 
     console.log(API_DATA)
-    // console.log(current_time_index)
     showTables()
     weekForecast()
-
+    isDay()
 }
 
 function createTables(i, table) {
@@ -146,19 +153,21 @@ function createTables(i, table) {
     new_cell2.classList.add('no-break', 'table-value')
     new_cell2.setAttribute('id', all_object_properties[i])
 }
+
 function showTables() {
+
     let items = Object.keys(WEATHER_GET).length + Object.keys(DATA_GET).length + Object.keys(INFO_GET).length
 
     for (let i = 0; i < items; i++) {
-
         if (i < Math.ceil(items / 3)) { createTables(i, 'table-1') }
         if (i >= Math.ceil(items / 3) && i < Math.ceil(items / 3) * 2) { createTables(i, 'table-2') }
         if (i >= Math.ceil(items / 3) * 2) { createTables(i, 'table-3') }
     }
+
     dateText(3)
 
     document.getElementById('nit_passada').innerText = `Nit de dia ${dateText(2)} (de 00:00h a 08:00h)`
-    document.getElementById('val-1').innerText = `${Math.min(PREVIOUS_NIGHT.api_rain[48], PREVIOUS_NIGHT.api_rain[49], PREVIOUS_NIGHT.api_rain[50], PREVIOUS_NIGHT.api_rain[51], PREVIOUS_NIGHT.api_rain[52], PREVIOUS_NIGHT.api_rain[53], PREVIOUS_NIGHT.api_rain[54], PREVIOUS_NIGHT.api_rain[55], PREVIOUS_NIGHT.api_rain[56])} mm`
+    document.getElementById('val-1').innerText = `${Math.min(PREVIOUS_NIGHT.api_rain[48], PREVIOUS_NIGHT.api_rain[49], PREVIOUS_NIGHT.api_rain[50], PREVIOUS_NIGHT.api_rain[51], PREVIOUS_NIGHT.api_rain[52], PREVIOUS_NIGHT.api_rain[53], PREVIOUS_NIGHT.api_rain[54], PREVIOUS_NIGHT.api_rain[55], PREVIOUS_NIGHT.api_rain[56])} L`
     document.getElementById('val-2').innerText = `${Math.min(PREVIOUS_NIGHT.api_temperature_2m[48], PREVIOUS_NIGHT.api_temperature_2m[49], PREVIOUS_NIGHT.api_temperature_2m[50], PREVIOUS_NIGHT.api_temperature_2m[51], PREVIOUS_NIGHT.api_temperature_2m[52], PREVIOUS_NIGHT.api_temperature_2m[53], PREVIOUS_NIGHT.api_temperature_2m[54], PREVIOUS_NIGHT.api_temperature_2m[55], PREVIOUS_NIGHT.api_temperature_2m[56])} °C`
     document.getElementById('val-3').innerText = `${Math.min(PREVIOUS_NIGHT.api_apparent_temperature[48], PREVIOUS_NIGHT.api_apparent_temperature[49], PREVIOUS_NIGHT.api_apparent_temperature[50], PREVIOUS_NIGHT.api_apparent_temperature[51], PREVIOUS_NIGHT.api_apparent_temperature[52], PREVIOUS_NIGHT.api_apparent_temperature[53], PREVIOUS_NIGHT.api_apparent_temperature[54], PREVIOUS_NIGHT.api_apparent_temperature[55], PREVIOUS_NIGHT.api_apparent_temperature[56])} °C`
     document.getElementById('val-4').innerText = `${Math.min(PREVIOUS_NIGHT.api_windgusts_10m[48], PREVIOUS_NIGHT.api_windgusts_10m[49], PREVIOUS_NIGHT.api_windgusts_10m[50], PREVIOUS_NIGHT.api_windgusts_10m[51], PREVIOUS_NIGHT.api_windgusts_10m[52], PREVIOUS_NIGHT.api_windgusts_10m[53], PREVIOUS_NIGHT.api_windgusts_10m[54], PREVIOUS_NIGHT.api_windgusts_10m[55], PREVIOUS_NIGHT.api_windgusts_10m[56])} Km/h`
@@ -169,7 +178,7 @@ function showTables() {
     document.getElementById('prediccio_dema').innerText = `Predicció de demà dia ${dateText(3)} basada en l'informació més recent.`
     document.getElementById('val-7').innerText = `${NEXT_DAY.api_temperature_2m_min} °C`
     document.getElementById('val-8').innerText = `${NEXT_DAY.api_temperature_2m_max} °C`
-    document.getElementById('val-9').innerText = `${Math.round(NEXT_DAY.api_precipitation_sum * 0.7)} - ${Math.round(NEXT_DAY.api_precipitation_sum)} mm`
+    document.getElementById('val-9').innerText = `${Math.round(NEXT_DAY.api_precipitation_sum * 0.7)} - ${Math.round(NEXT_DAY.api_precipitation_sum)} L`
     document.getElementById('val-10').innerText = `${NEXT_DAY.api_windspeed} Km/h`
     document.getElementById('val-11').innerText = `${windCardinalDirection(NEXT_DAY.api_winddirection)} `
 
@@ -177,6 +186,7 @@ function showTables() {
 }
 
 function weatherCode(code) {
+
     switch (code) {
         case 0: return 'Clar'
         case 1: return 'Mig tapat'
@@ -200,7 +210,9 @@ function weatherCode(code) {
         case 96: case 99: return 'Calabruix'
     }
 }
+
 function fixText(variable_name) {
+
     let table_cell_text = ''
     let words_array = variable_name.split('_')
 
@@ -211,7 +223,9 @@ function fixText(variable_name) {
 
     return table_cell_text
 }
+
 function windCardinalDirection(degrees) {
+
     const CARDINAL_POINTS = [0, 22.5, 45, 67.5, 90, 112.5, 135, 157.5, 180, 202.5, 225, 247.5, 270, 292.5, 315, 337.5]
     const DELTAS = []
     CARDINAL_POINTS.forEach((point) => { DELTAS.push(Math.abs(degrees - point)) })
@@ -219,30 +233,30 @@ function windCardinalDirection(degrees) {
     let smallest_delta = Math.min(...DELTAS)
     let closest_degree = CARDINAL_POINTS[DELTAS.indexOf(smallest_delta)]
 
+    // ↖ ↗ ↘ ↙ ← → ↑ ↓
     switch (closest_degree) {
-        case 0: return `N (${degrees}°)`
-        case 22.5: return `NNE (${degrees}°)`
-        case 45: return `NE (${degrees}°)`
-        case 67.5: return `NEE (${degrees}°)`
-        case 90: return `E (${degrees}°)`
-        case 112.5: return `SEE (${degrees}°)`
-        case 135: return `SE (${degrees}°)`
-        case 157.5: return `SSE (${degrees}°)`
-        case 180: return `S (${degrees}°)`
-        case 202.5: return `SSO (${degrees}°)`
-        case 225: return `SO (${degrees}°)`
-        case 247.5: return `SOO (${degrees}°)`
-        case 270: return `O (${degrees}°)`
-        case 292.5: return `NOO (${degrees}°)`
-        case 315: return `NO (${degrees}°)`
-        case 337.5: return `NNO (${degrees}°)`
+        case 0: return `N ↑ (${degrees}°)`
+        case 22.5: return `NNE ↑↗ (${degrees}°)`
+        case 45: return `NE ↗ (${degrees}°)`
+        case 67.5: return `NEE → (${degrees}°)`
+        case 90: return `E → (${degrees}°)`
+        case 112.5: return `SEE → (${degrees}°)`
+        case 135: return `SE ↘ (${degrees}°)`
+        case 157.5: return `SSE ↓↘ (${degrees}°)`
+        case 180: return `S ↓ (${degrees}°)`
+        case 202.5: return `SSO ↓ (${degrees}°)`
+        case 225: return `SO ↙ (${degrees}°)`
+        case 247.5: return `SOO ← (${degrees}°)`
+        case 270: return `O ← (${degrees}°)`
+        case 292.5: return `NOO ← (${degrees}°)`
+        case 315: return `NO ↖ (${degrees}°)`
+        case 337.5: return `NNO ↑ (${degrees}°)`
     }
 }
 
 function highlights(dia, lloc_taula, min, max) {
 
     let highlights_array = []
-
     for (let i = min; i < max; i++) {
         if (highlights_array.indexOf(dia.api_weathercode[i]) == -1) {
             document.getElementById(lloc_taula).innerText += `[${weatherCode(dia.api_weathercode[i])}]\n `
@@ -252,24 +266,45 @@ function highlights(dia, lloc_taula, min, max) {
 }
 
 function weekForecast() {
+
     for (let i = 0; i < 7; i++) {
-        weatherIcon(i)
         document.getElementById('dia_' + (i + 1)).innerText = 'Dia ' + FORECAST.api_time[i + 2].match(/..$/)
         document.getElementById('div_dia_' + (i + 1)).classList.add(weatherIcon(FORECAST.api_weathercode[i + 2]))
     }
+    weatherIcon(FORECAST.api_weathercode[2])
+    document.getElementById('grafic_container').style.backgroundColor = FORECAST.color
+
 }
 
 function weatherIcon(weathercode) {
+
     switch (weathercode) {
-        case 0: return 'sun'
-        case 1: return 'part_cloud'
-        case 2: case 3: case 45: case 48: return 'cloud'
-        case 51: case 53: case 55: case 56: case 57: case 61: case 63: case 65: case 66: case 67: return 'rain'
-        case 77: case 85: case 86: return 'snow'
-        case 95: case 80: case 81: case 82: case 96: case 99: return 'storm'
+        case 0:
+            if (isDay()) { FORECAST.color = '#ffdc25'; return 'sun' }
+            if (!isDay()) { FORECAST.color = '#091725'; return 'night' }
+        case 1: case 2: FORECAST.color = '#8ab2d1'; return 'part_cloud'
+        case 3: FORECAST.color = '#bcbcbc'; return 'cloud'
+        case 45: case 48: FORECAST.color = '#bcbcbc'; return 'fog'
+        case 51: case 53: case 55: case 56: case 57: FORECAST.color = 'rgb(45 130 175)'; return 'light-rain'
+        case 61: case 63: case 66: FORECAST.color = '#086494'; return 'rain'
+        case 71: case 73: case 75: case 77: case 85: case 86: FORECAST.color = 'rgb(209 209 209)'; return 'snow'
+        case 65: case 67: case 95: case 80: case 81: case 82: case 96: case 99: FORECAST.color = 'rgb(50 72 83)'; return 'storm'
     }
 }
 
-function dateText(date_index) {
-    return FORECAST.api_time[date_index].match(/[1-9][0-9]*$/g)
+function dateText(date_index) { return FORECAST.api_time[date_index].match(/[1-9][0-9]*$/g) }
+
+function isDay() {
+
+    let sortida_min = Number(INFO_GET.sortida_sol.match(/[^\w](\d\d)/)[1]) + (Number(INFO_GET.sortida_sol.match(/\d\d/)) * 60)
+    let posta_min = Number(INFO_GET.posta_sol.match(/[^\w](\d\d)/)[1]) + (Number(INFO_GET.posta_sol.match(/\d\d/)) * 60)
+    let min = (INFO.hores * 60) + INFO.minuts
+    if (min >= sortida_min || min <= posta_min) { return true }
+    else { return false }
 }
+
+function getMinutesFormat() {
+    if (DATE.getMinutes() < 10) { return '0' + DATE.getMinutes() }
+    else { return DATE.getMinutes() }
+}
+
