@@ -41,8 +41,8 @@ const INFO_GET = {
 
     get sortida_sol() { return `${INFO.api_sunrise.match(/.....$/)} h` },
     get posta_sol() { return `${INFO.api_sunset.match(/.....$/)} h` },
-    get latitud() { return `${INFO.api_latitude} °N` },
-    get longitud() { return `${INFO.api_longitude} °E` },
+    get latitud() { return `${(INFO.api_latitude).toFixed(2)} °N` },
+    get longitud() { return `${(INFO.api_longitude).toFixed(2)} °E` },
     get zona_horaria() { return `${INFO.api_timezone}` },
 }
 
@@ -106,7 +106,7 @@ async function apiFetch() {
     WEATHER.api_weathercode = API_DATA.current_weather.weathercode
     WEATHER.api_windspeed = API_DATA.current_weather.windspeed
     WEATHER.api_winddirection = API_DATA.current_weather.winddirection
-    WEATHER.api_precipitation_sum = API_DATA.daily.precipitation_sum[2] + API_DATA.daily.showers_sum[2]
+    WEATHER.api_precipitation_sum = (API_DATA.daily.precipitation_sum[2] + API_DATA.daily.showers_sum[2]).toFixed(2)
     WEATHER.api_temperature_2m_min = API_DATA.daily.temperature_2m_min[2]
     WEATHER.api_temperature_2m_max = API_DATA.daily.temperature_2m_max[2]
     WEATHER.api_apparent_temperature = API_DATA.hourly.apparent_temperature[current_time_index]
