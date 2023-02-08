@@ -10,6 +10,17 @@ body {
     font-size: .85em;
 }
 
+.form-select {
+    max-width: 120px;
+    background-color: rgb(33, 36, 43) !important;
+    border: .5px solid #2e3235 !important;
+    height: 25px;
+    color: white !important;
+    font-size: .7em !important;
+    padding-top: .35em !important;
+    margin-top: 4px;
+}
+
 .no-break {
     white-space: nowrap;
 }
@@ -70,7 +81,7 @@ body {
 
 .cloud {
     background-image: url(../img/logo-cloud.png);
-    background-color: #bcbcbc;
+    background-color: #acacac;
 }
 
 .light-rain {
@@ -100,10 +111,10 @@ body {
 
 .fog {
     background-image: url(../img/logo-fog.png);
-    background-color: #bcbcbc;
+    background-color: #d3d3d3;
 }
 
 .night {
     background-image: url(../img/logo-night.png);
-    background-color: #091725;
+    background-color: #13283a;
 }
