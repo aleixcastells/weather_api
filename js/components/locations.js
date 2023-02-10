@@ -1,0 +1,37 @@
+// API Documentation https://open-meteo.com/en/docs#api-documentation
+
+export const API_URL = [
+    ['https://api.open-meteo.com/v1/forecast?latitude=', '&longitude=', '&hourly=temperature_2m,relativehumidity_2m,pressure_msl,surface_pressure,dewpoint_2m,apparent_temperature,precipitation,rain,showers,freezinglevel_height,weathercode,surface_pressure,visibility,evapotranspiration,cape,windgusts_10m,soil_temperature_0cm,soil_temperature_6cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm,soil_moisture_27_81cm,shortwave_radiation_instant,direct_radiation_instant,diffuse_radiation_instant,direct_normal_irradiance_instant,terrestrial_radiation_instant&models=', '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,showers_sum,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&timezone=', '&past_days=2'],
+    ['1 Artà', '39.69', '3.35', 'auto', 'best_match'],
+    ['2 Llucmajor', '39.49', '2.89', 'auto', 'best_match'],
+    ['3 Palma', '39.57', '2.65', 'auto', 'best_match'],
+    ['4 Petra', '39.51', '3.11', 'auto', 'best_match'],
+    ['5 Manacor', '39.57', '3.21', 'auto', 'best_match'],
+    ['6 Ciutadella', '40.00', '3.84', 'auto', 'best_match'],
+    ['7 Eivissa', '38.91', '1.93', 'auto', 'best_match'],
+    ['8 Barcelona', '41.39', '2.16', 'auto', 'best_match'],
+    ['9 Gavà', '41.31', '2.00', 'auto', 'best_match'],
+    ['10 Sant Quirze', '41.53', '2.08', 'auto', 'best_match'],
+    ['11 Madrid', '40.42', '-3.70', 'auto', 'best_match'],
+    ['12 Lyon', '45.75', '4.85', 'auto', 'best_match'],
+    ['13 Amsterdam', '52.37', '4.89', 'auto', 'best_match'],
+    ['14 Berlin', '52.52', '13.41', 'auto', 'best_match'],
+    ['15 London', '51.51', '-0.13', 'auto', 'best_match'],
+    ['16 Paris', '48.85', '2.35', 'auto', 'best_match'],
+    ['17 Kiev', '50.45', '30.52', 'Europe%2FMoscow', 'best_match'],
+    ['18 Cape Town', '-33.93', '18.42', 'auto', 'best_match'],
+    ['19 San Francisco', '37.77', '-122.42', 'auto', 'best_match'],
+    ['20 Port Townsend', '48.12', '-122.76', 'auto', 'best_match'],
+    ['21 Glasgow', '55.87', '-4.26', 'auto', 'best_match'],
+    ['22 Estocolm', '59.33', '18.07', 'auto', 'best_match'],
+    ['23 New York', '40.71', '-74.01', 'auto', 'best_match'],
+    ['23 Winnipeg', '49.88', '-97.15', 'auto', 'best_match'],
+    ['24 Anchorage', '61.22', '-149.90', 'auto', 'best_match'],
+    ['25 Salvador', '-12.97', '-38.51', 'auto', 'best_match'],
+    ['26 Tokio', '35.69', '139.69', 'auto', 'best_match'],
+    ['27 Sydney', '-33.87', '151.21', 'auto', 'best_match'],
+    ['28 Auckland', '-36.85', '174.76', 'auto', 'best_match'],
+    ['29 Perth', '-31.95', '115.82', 'auto', 'best_match'],
+    ['30 Mexico City', '19.43', '-99.13', 'auto', 'best_match']
+]
+

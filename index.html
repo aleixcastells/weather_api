@@ -23,6 +23,10 @@
 
 <body class="bootstrap">
 
+    <div id="info_div" class="explain_card info-visible">
+        <span id="info_text" class="info_text"></span>
+    </div>
+
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -30,7 +34,7 @@
             <!-- Navbar Title-->
             <a id="navbar_title" class="navbar-brand">meteoartà</a>
 
-            <select id="form-select" class="form-select" onchange="selectLocation()" aria-label="Default select example">
+            <select id="form-select" class="form-select" aria-label="Default select example">
                 <option selected>Location</option>
             </select>
 
@@ -128,24 +132,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-1" scope="col">Total pluja</td>
                             <td class="table-value" id="val-1" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-2" scope="col">Temperatura mínima</td>
                             <td class="table-value" id="val-2" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-3" scope="col">Sensació mínima</td>
                             <td class="table-value" id="val-3" scope="col"></td>
                         </tr>
 
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-4" scope="col">Màxima vent</td>
                             <td class="table-value" id="val-4" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-5" class="no-break" scope="col">Cota de neu mínima</td>
                             <td class="table-value" id="val-5" scope="col"></td>
                         </tr>
@@ -161,7 +165,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-6" scope="col">Aquesta nit ha fet:</td>
                             <td class="table-value" id="val-6" scope="col"></td>
                         </tr>
@@ -185,23 +189,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-1" scope="col">Temperatura mínima</td>
                             <td class="table-value" id="val-7" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-2" scope="col">Temperatura màxima</td>
                             <td class="table-value" id="val-8" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-3" scope="col">Total pluja</td>
                             <td class="table-value" id="val-9" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-4" scope="col">Màxima vent</td>
                             <td class="table-value" id="val-10" scope="col"></td>
                         </tr>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-5" class="no-break" scope="col">Direcció dominant vent</td>
                             <td class="table-value" id="val-11" scope="col"></td>
                         </tr>
@@ -218,7 +222,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="blue-hover">
+                        <tr>
                             <td id="var-6" scope="col">Demà ha de fer:</td>
                             <td class="table-value" id="val-12" scope="col"></td>
                         </tr>
@@ -231,7 +235,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
