@@ -29,7 +29,6 @@ export function highlights(dia, lloc_taula, min, max) {
     }
 }
 
-
 export function dateText(date_index) { return FORECAST.api_time[date_index].match(/[1-9][0-9]*$/g) }
 
 function wipe() {
@@ -49,15 +48,12 @@ function wipe() {
     console.clear()
 }
 
-
-
 function navbarFormat(unformatted_name) {
     let formatted_name = String(unformatted_name.match(/[^\d][^\s][a-z\sàèéíòóùúäëïöïü]{1,}/gi))
     formatted_name = formatted_name.replace(/\s/ig, '').toLocaleLowerCase();
     return formatted_name
 }
 
-function writeTitle() {
+export function writeTitle() {
     document.getElementById('navbar_title').innerText = `meteo${navbarFormat(API_URL[location_number][0])}`
 }
-
