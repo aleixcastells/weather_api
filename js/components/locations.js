@@ -1,5 +1,3 @@
-// API Documentation https://open-meteo.com/en/docs#api-documentation
-
 export const API_URL = [
     ['https://api.open-meteo.com/v1/forecast?latitude=', '&longitude=', '&hourly=temperature_2m,relativehumidity_2m,pressure_msl,surface_pressure,dewpoint_2m,apparent_temperature,precipitation,rain,showers,freezinglevel_height,weathercode,surface_pressure,visibility,evapotranspiration,cape,windgusts_10m,soil_temperature_0cm,soil_temperature_6cm,soil_moisture_1_3cm,soil_moisture_3_9cm,soil_moisture_9_27cm,soil_moisture_27_81cm,shortwave_radiation_instant,direct_radiation_instant,diffuse_radiation_instant,direct_normal_irradiance_instant,terrestrial_radiation_instant&models=', '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,showers_sum,windspeed_10m_max,winddirection_10m_dominant&current_weather=true&timezone=', '&past_days=2'],
     ['1 Artà', '39.69', '3.35', 'auto', 'best_match'],
@@ -32,6 +30,6 @@ export const API_URL = [
     ['27 Sydney', '-33.87', '151.21', 'auto', 'best_match'],
     ['28 Auckland', '-36.85', '174.76', 'auto', 'best_match'],
     ['29 Perth', '-31.95', '115.82', 'auto', 'best_match'],
-    ['30 Mexico City', '19.43', '-99.13', 'auto', 'best_match']
+    ['30 C. de Méxic', '19.43', '-99.13', 'auto', 'best_match']
 ]
 

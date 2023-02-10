@@ -1,7 +1,7 @@
 body {
     background-color: rgb(241, 241, 241) !important;
     color: rgb(59, 59, 59) !important;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 .navbar {
@@ -159,4 +159,12 @@ body {
 
 .info-hidden {
     display: none;
+}
+
+.footer {
+    text-align: center;
+    padding-top: 50px;
+    width: 100%;
+    display: block;
+    font-size: .6em;
 }
