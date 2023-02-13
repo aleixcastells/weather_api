@@ -9,21 +9,21 @@ export function windCardinalDirection(degrees) {
 
     // ↖ ↗ ↘ ↙ ← → ↑ ↓
     switch (closest_degree) {
-        case 0: return `N ↑ (${degrees}°)`
-        case 22.5: return `NNE ↗ (${degrees}°)`
-        case 45: return `NE ↗ (${degrees}°)`
-        case 67.5: return `NEE ↗ (${degrees}°)`
-        case 90: return `E → (${degrees}°)`
-        case 112.5: return `SEE ↘ (${degrees}°)`
-        case 135: return `SE ↘ (${degrees}°)`
-        case 157.5: return `SSE ↘ (${degrees}°)`
-        case 180: return `S ↓ (${degrees}°)`
-        case 202.5: return `SSO ↙ (${degrees}°)`
-        case 225: return `SO ↙ (${degrees}°)`
-        case 247.5: return `SOO ↙ (${degrees}°)`
-        case 270: return `O ← (${degrees}°)`
-        case 292.5: return `NOO ↖ (${degrees}°)`
-        case 315: return `NO ↖ (${degrees}°)`
-        case 337.5: return `NNO ↖ (${degrees}°)`
+        case 0: return `N ↓ (${degrees}°)`
+        case 22.5: return `NNE ↙ (${degrees}°)`
+        case 45: return `NE ↙ (${degrees}°)`
+        case 67.5: return `NEE ↙ (${degrees}°)`
+        case 90: return `E ← (${degrees}°)`
+        case 112.5: return `SEE ↖ (${degrees}°)`
+        case 135: return `SE ↖ (${degrees}°)`
+        case 157.5: return `SSE ↖ (${degrees}°)`
+        case 180: return `S ↑ (${degrees}°)`
+        case 202.5: return `SSO ↗ (${degrees}°)`
+        case 225: return `SO ↗ (${degrees}°)`
+        case 247.5: return `SOO ↗ (${degrees}°)`
+        case 270: return `O → (${degrees}°)`
+        case 292.5: return `NOO ↘ (${degrees}°)`
+        case 315: return `NO ↘ (${degrees}°)`
+        case 337.5: return `NNO ↘ (${degrees}°)`
     }
 }

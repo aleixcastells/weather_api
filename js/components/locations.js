@@ -9,6 +9,7 @@ export const API_URL = [
     ['7 Eivissa', '38.91', '1.93', 'auto', 'best_match'],
     ['8 Barcelona', '41.39', '2.16', 'auto', 'best_match'],
     ['9 Gavà', '41.31', '2.00', 'auto', 'best_match'],
+    ['9 L\'Ampolla', '40.81', '0.71', 'auto', 'best_match'],
     ['10 Sant Quirze', '41.53', '2.08', 'auto', 'best_match'],
     ['11 Madrid', '40.42', '-3.70', 'auto', 'best_match'],
     ['12 Lyon', '45.75', '4.85', 'auto', 'best_match'],
