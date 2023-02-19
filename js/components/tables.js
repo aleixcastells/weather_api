@@ -20,7 +20,7 @@ export function createTables(i, table) {
 
     document.getElementById('table_row_' + (i + 1)).addEventListener('click', e => {
         e.stopPropagation()
-        unfixText(e.currentTarget.cells[1].innerText)
+        console.log(e.currentTarget.cells[1].innerText)
 
         for (let i = 0; i < ARRAY_NAMES.length; i++) {
 

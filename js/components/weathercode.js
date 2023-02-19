@@ -7,9 +7,9 @@ export function weatherCode(code) {
 
     switch (code) {
         case 0: return 'Clar'
-        case 1: return 'Mig tapat'
-        case 2: return 'Tapat'
-        case 3: return 'Molt tapat'
+        case 1: return 'Algun núvol'
+        case 2: return 'Mig'
+        case 3: return 'Tapat'
         case 45: case 48: return 'Boira'
         case 51: return 'Babaí'
         case 53: return 'Brusca suau'

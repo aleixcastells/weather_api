@@ -28,6 +28,8 @@ export async function apiFetch() {
   INFO.api_utc_offset = API_DATA.utc_offset_seconds
   INFO.api_sunrise = API_DATA.daily.sunrise[2]
   INFO.api_sunset = API_DATA.daily.sunset[2]
+  WEATHER.api_uvi_max = API_DATA.daily.uv_index_clear_sky_max[2]
+  WEATHER.api_uvi = API_DATA.daily.uv_index_max[2]
   WEATHER.api_temperature = API_DATA.current_weather.temperature
   WEATHER.api_weathercode = API_DATA.current_weather.weathercode
   WEATHER.api_windspeed = API_DATA.current_weather.windspeed

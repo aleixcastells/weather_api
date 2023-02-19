@@ -69,7 +69,7 @@ export const WEATHER_GET = {
   get pressió_mar() {
     return `${WEATHER.api_pressure_msl} hPa`
   },
-  get pressió_superficie() {
+  get pressió_superfície() {
     return `${WEATHER.api_surface_pressure} hPa`
   },
   get direcció_vent() {
@@ -146,5 +146,13 @@ export const DATA_GET = {
   },
   get CAPE() {
     return `${DATA.api_cape} J/kg`
+  },
+  get uvi_max() {
+    if (WEATHER.api_uvi == null) { return 'No disponible' }
+    return `${WEATHER.api_uvi}`
+  },
+  get uvi_cel_clar_max() {
+    if (WEATHER.api_uvi_max == null) { return 'No disponible' }
+    return `${WEATHER.api_uvi_max}`
   },
 }

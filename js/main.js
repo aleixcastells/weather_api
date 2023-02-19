@@ -13,6 +13,8 @@ export const DATE = new Date()
 apiFetch()
 createOptions()
 
+
+
 export function change(new_location_number) {
   wipe()
   location_number = new_location_number
@@ -50,6 +52,7 @@ function wipe() {
     document.getElementById("div_dia_" + i).className = "dia"
   }
   console.clear()
+
 }
 
 function navbarFormat(unformatted_name) {

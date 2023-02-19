@@ -41,6 +41,7 @@ export function monthCharacter(month_number) {
 
 export function dayCharacter(day_number) {
     switch (day_number) {
+        case 0: return 'Dg'
         case 1: return 'Dl'
         case 2: return 'Dt'
         case 3: return 'Dc'
